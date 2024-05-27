@@ -11,11 +11,40 @@ import {StatusBar} from 'react-native';
 
 const App = () => {
   const [input, setInput] = useState('');
+  const [result, setResult] = useState('');
+
+  const onButtonPress = value => {
+    if (value === '=') {
+      if (input.trim() === '') {
+        setResult('');
+        return;
+      }
+      try {
+        const formattedInput = input
+          .replace(/%/g, '/100')
+          .replace(/x/g, '*')
+          .replace(/÷/g, '/');
+        setResult(eval(formattedInput).toString());
+      } catch (error) {
+        setResult('error');
+      }
+    } else if (value === 'C') {
+      setInput('');
+      setResult('');
+    } else if (value === ',') {
+      setInput(input + '.');
+    } else if (value === '⌫') {
+      setInput(input.slice(0, -1));
+    } else {
+      setInput(input + value);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
       <View style={styles.resultContainer}>
-        <Text style={styles.resultText} />
+        <Text style={styles.resultText}>{result}</Text>
       </View>
       <View style={styles.inputContainer}>
         <TextInput
