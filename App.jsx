@@ -151,4 +151,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#FFFFFF',
   },
+  specialButton: {
+    backgroundColor: '#FF9500',
+  },
+  specialButtonText: {
+    color: '#FFFFFF',
+  },
+  equalButton: {
+    backgroundColor: '#FF9500',
+  },
 });
